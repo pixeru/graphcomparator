@@ -29,12 +29,12 @@ graph-compare --help
 
 The default output prints:
 
-- closeness score
-- score label
-- RMSE
-- MAE
-- overlap window
-- aligned point count
+- closeness score: the main `0-100` similarity score
+- score label: a quick plain-English reading such as `Very close`
+- RMSE: the typical difference, with extra weight on larger misses
+- MAE: the average gap between the two series
+- overlap window: the shared part of the x-axis that was compared
+- aligned point count: how many shared x-axis positions were used
 
 Use `--json` for machine-readable output.
 

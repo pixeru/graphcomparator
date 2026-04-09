@@ -21,11 +21,17 @@ You upload two files with an `x,y` header, the app overlays both curves on a sha
 3. It finds the shared x-domain between both series.
 4. It builds a comparison grid from the union of both files' x-values inside that shared range.
 5. Missing points are filled by linear interpolation.
-6. It computes:
+6. It computes a few summary numbers:
 
-- `RMSE`: root mean squared error
-- `MAE`: mean absolute error
-- `Closeness`: `max(0, 100 * (1 - RMSE / yRange))`
+- `Closeness score` (`0` to `100`): the main "how similar are these two lines?" score. Higher is better. `100` means they match perfectly in the shared part of the chart.
+- `Score label`: a quick plain-English reading of the score, such as `Very close`.
+- `MAE`: the average gap between the two lines at the compared points. Lower is better.
+- `RMSE`: similar to MAE, but it gives extra weight to larger misses. Lower is better.
+- `Aligned points`: how many x-axis positions were actually compared after both files were lined up.
+
+If you only look at one number, look at the `Closeness score` first.
+
+Internally, the score is based on RMSE compared with the shared `y` range, so it still makes sense when charts use different scales.
 
 If the shared `y` range is zero, the app falls back to exact-match behavior:
 
@@ -70,6 +76,17 @@ The UI maps the numeric score to a quick label:
 - `Very close`: `>= 80`
 - `Moderately close`: `>= 55` and `< 80`
 - `Far apart`: `< 55`
+
+## Reading the Metrics
+
+Here is a plain-English way to read the result cards:
+
+- `Closeness score: 85.5` and `Very close` means the two lines stay fairly close to each other overall.
+- `RMSE: 2.46` means the typical mismatch is a bit under `2.5` y-units, with bigger misses counting extra.
+- `MAE: 2.13` means the average gap between the two lines is about `2.1` y-units.
+- `Aligned points: 21` means the comparison used `21` shared x-axis sample positions.
+
+In short: start with the closeness score for the big picture, then use `MAE` and `RMSE` if you want to know how large the gaps are.
 
 ## Sample Data
 
