@@ -21,7 +21,8 @@ export const samplePairs: SamplePair[] = [
   {
     id: 'target_91_pair',
     label: '91 score pair',
-    blurb: 'A synthetic pair tuned to land around a 91-point closeness score.',
+    blurb:
+      'A calibrated pair with intentionally different x positions that still lands around 91.',
     leftName: 'target_91_pair_a.csv',
     rightName: 'target_91_pair_b.csv',
     leftPath: '/samples/target_91_pair_a.csv',

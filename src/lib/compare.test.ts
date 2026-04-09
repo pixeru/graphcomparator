@@ -75,22 +75,33 @@ describe('compareSeries', () => {
     expect(score).toBeGreaterThanOrEqual(90)
     expect(score).toBeLessThanOrEqual(92)
   })
+
+  it('uses different x positions across the calibrated 91-score sample', () => {
+    const left = parseSamplePair('target_91_pair', 'a')
+    const right = parseSamplePair('target_91_pair', 'b')
+    const rightXs = new Set(right.points.map((point) => point.x))
+
+    expect(left.points.some((point) => rightXs.has(point.x))).toBe(false)
+  })
 })
 
 function scoreSamplePair(
   pairName: 'close_pair' | 'target_91_pair' | 'medium_pair' | 'far_pair',
 ) {
-  const left = readFileSync(
-    join(process.cwd(), 'public', 'samples', `${pairName}_a.csv`),
-    'utf8',
-  )
-  const right = readFileSync(
-    join(process.cwd(), 'public', 'samples', `${pairName}_b.csv`),
+  return compareSeries(
+    parseSamplePair(pairName, 'a'),
+    parseSamplePair(pairName, 'b'),
+  ).closenessScore
+}
+
+function parseSamplePair(
+  pairName: 'close_pair' | 'target_91_pair' | 'medium_pair' | 'far_pair',
+  side: 'a' | 'b',
+) {
+  const raw = readFileSync(
+    join(process.cwd(), 'public', 'samples', `${pairName}_${side}.csv`),
     'utf8',
   )
 
-  return compareSeries(
-    parseCsvSeries(left, `${pairName}_a.csv`),
-    parseCsvSeries(right, `${pairName}_b.csv`),
-  ).closenessScore
+  return parseCsvSeries(raw, `${pairName}_${side}.csv`)
 }
