@@ -19,6 +19,15 @@ export const samplePairs: SamplePair[] = [
     rightPath: '/samples/close_pair_b.csv',
   },
   {
+    id: 'target_91_pair',
+    label: '91 score pair',
+    blurb: 'A synthetic pair tuned to land around a 91-point closeness score.',
+    leftName: 'target_91_pair_a.csv',
+    rightName: 'target_91_pair_b.csv',
+    leftPath: '/samples/target_91_pair_a.csv',
+    rightPath: '/samples/target_91_pair_b.csv',
+  },
+  {
     id: 'medium_pair',
     label: 'medium pair',
     blurb: 'Same general shape, but with visible offset and amplitude drift.',

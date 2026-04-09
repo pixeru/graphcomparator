@@ -76,6 +76,7 @@ The UI maps the numeric score to a quick label:
 Bundled sample CSVs live in `public/samples/`:
 
 - `close_pair_a.csv` / `close_pair_b.csv`
+- `target_91_pair_a.csv` / `target_91_pair_b.csv`
 - `medium_pair_a.csv` / `medium_pair_b.csv`
 - `far_pair_a.csv` / `far_pair_b.csv`
 

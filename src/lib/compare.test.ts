@@ -68,9 +68,18 @@ describe('compareSeries', () => {
     expect(closeScore).toBeGreaterThan(mediumScore)
     expect(mediumScore).toBeGreaterThan(farScore)
   })
+
+  it('keeps the calibrated 91-score sample inside the requested range', () => {
+    const score = scoreSamplePair('target_91_pair')
+
+    expect(score).toBeGreaterThanOrEqual(90)
+    expect(score).toBeLessThanOrEqual(92)
+  })
 })
 
-function scoreSamplePair(pairName: 'close_pair' | 'medium_pair' | 'far_pair') {
+function scoreSamplePair(
+  pairName: 'close_pair' | 'target_91_pair' | 'medium_pair' | 'far_pair',
+) {
   const left = readFileSync(
     join(process.cwd(), 'public', 'samples', `${pairName}_a.csv`),
     'utf8',

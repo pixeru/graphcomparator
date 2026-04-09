@@ -13,6 +13,14 @@ const sampleMap: Record<string, string> = {
     join(process.cwd(), 'public', 'samples', 'close_pair_b.csv'),
     'utf8',
   ),
+  '/samples/target_91_pair_a.csv': readFileSync(
+    join(process.cwd(), 'public', 'samples', 'target_91_pair_a.csv'),
+    'utf8',
+  ),
+  '/samples/target_91_pair_b.csv': readFileSync(
+    join(process.cwd(), 'public', 'samples', 'target_91_pair_b.csv'),
+    'utf8',
+  ),
   '/samples/medium_pair_a.csv': readFileSync(
     join(process.cwd(), 'public', 'samples', 'medium_pair_a.csv'),
     'utf8',
