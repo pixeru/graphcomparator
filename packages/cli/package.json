@@ -1,0 +1,32 @@
+{
+  "name": "graph-comparator-cli",
+  "version": "0.1.0",
+  "description": "CLI for comparing two x,y CSV series and scoring how close they are.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "graph-compare": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "cli",
+    "csv",
+    "graph",
+    "compare",
+    "timeseries"
+  ],
+  "scripts": {
+    "build": "tsup src/cli.ts --format esm --platform node --target node20 --out-dir dist --clean",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  }
+}
